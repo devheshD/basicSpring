@@ -1,4 +1,4 @@
-package develop.basicSpring.member.repository
+package develop.basicSpring.member.service
 
 import develop.basicSpring.member.Member
 

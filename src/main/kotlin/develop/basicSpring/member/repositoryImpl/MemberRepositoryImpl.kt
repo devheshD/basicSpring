@@ -6,13 +6,15 @@ import develop.basicSpring.member.repository.MemberRepository
 /**
  * @author Rasung Ki
  */
-class MemberRepositoryImpl: MemberRepository {
-    override fun save(member: Member) {
-        store[member.memberId] = member
-    }
+class MemberRepositoryImpl {
+    val memberRepository = object : MemberRepository {
+        override fun save(member: Member) {
+            store[member.memberId] = member
+        }
 
-    override fun findById(memberId: String): Member? {
-        return store[memberId]
+        override fun findById(memberId: String): Member? {
+            return store[memberId]
+        }
     }
 
     companion object {
