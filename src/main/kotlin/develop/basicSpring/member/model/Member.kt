@@ -1,4 +1,6 @@
-package develop.basicSpring.member
+package develop.basicSpring.member.model
+
+import develop.basicSpring.member.Grade
 
 /**
  * @author Rasung Ki

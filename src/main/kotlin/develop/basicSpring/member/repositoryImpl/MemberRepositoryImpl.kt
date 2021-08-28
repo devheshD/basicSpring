@@ -1,6 +1,6 @@
 package develop.basicSpring.member.repositoryImpl
 
-import develop.basicSpring.member.Member
+import develop.basicSpring.member.model.Member
 import develop.basicSpring.member.repository.MemberRepository
 
 /**

@@ -1,6 +1,6 @@
 package develop.basicSpring.member.service
 
-import develop.basicSpring.member.Member
+import develop.basicSpring.member.model.Member
 
 /**
  * @author Rasung Ki
