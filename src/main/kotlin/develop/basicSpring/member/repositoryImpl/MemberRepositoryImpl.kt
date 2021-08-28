@@ -12,8 +12,8 @@ class MemberRepositoryImpl : MemberRepository {
         store[member.memberId] = member
     }
 
-    override fun findById(memberId: String): Member? {
-        return store[memberId]
+    override fun findById(memberId: String): Member {
+        return store[memberId]!!
     }
 
     companion object {

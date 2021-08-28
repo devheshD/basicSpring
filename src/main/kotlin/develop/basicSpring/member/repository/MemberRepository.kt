@@ -7,5 +7,5 @@ import develop.basicSpring.member.model.Member
  */
 interface MemberRepository {
     fun save(member: Member)
-    fun findById(memberId: String): Member?
+    fun findById(memberId: String): Member
 }
