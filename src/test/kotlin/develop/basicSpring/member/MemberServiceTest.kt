@@ -18,8 +18,8 @@ class MemberServiceTest {
         // given
         val member = Member("1", "memberA", Grade.VIP)
         // when
-        memberServiceImpl.memberService.join(member)
-        val findMember = memberServiceImpl.memberService.findMember("1")
+        memberServiceImpl.join(member)
+        val findMember = memberServiceImpl.findMember("1")
         // then
         Assertions.assertThat(member).isEqualTo(findMember)
 
