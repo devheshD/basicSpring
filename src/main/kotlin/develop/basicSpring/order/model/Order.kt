@@ -4,12 +4,13 @@ package develop.basicSpring.order.model
  * @author Rasung Ki
  */
 data class Order(
-    private val memberId: String,
-    private val itemName: String,
-    private val itemPrice: Int,
-    private val discountPrice: Int,
+    val memberId: String,
+    val itemName: String,
+    val itemPrice: Int,
+    val discountPrice: Int,
 ) {
     fun calculatePrice(): Int {
         return itemPrice - discountPrice
     }
+
 }
