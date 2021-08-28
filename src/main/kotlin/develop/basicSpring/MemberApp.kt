@@ -16,4 +16,5 @@ fun main() {
 
     println("Find Member = ${findMember?.name}")
     println("Member = ${member.name}")
+    println("test commit")
 }
