@@ -1,9 +1,8 @@
 package develop.basicSpring.order
 
+import develop.basicSpring.AppConfig
 import develop.basicSpring.member.Grade
 import develop.basicSpring.member.model.Member
-import develop.basicSpring.member.serviceImpl.MemberServiceImpl
-import develop.basicSpring.order.serviceImpl.OrderServiceImpl
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 
@@ -11,8 +10,9 @@ import org.junit.jupiter.api.Test
  * @author Rasung Ki
  */
 class OrderServiceTest {
-    private val memberService = MemberServiceImpl()
-    private val orderService = OrderServiceImpl()
+    private val appConfig = AppConfig()
+    private val memberService = appConfig.memberService()
+    private val orderService = appConfig.orderService()
 
     @Test
     fun createOrder() {

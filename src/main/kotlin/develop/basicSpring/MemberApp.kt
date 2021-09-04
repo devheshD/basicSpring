@@ -9,7 +9,8 @@ import develop.basicSpring.member.serviceImpl.MemberServiceImpl
  */
 fun main() {
     val member = Member("1", "memberA", Grade.VIP)
-    val service = MemberServiceImpl()
+    val appConfig = AppConfig()
+    val service = appConfig.memberService()
     service.join(member)
 
     val findMember = service.findMember("1")

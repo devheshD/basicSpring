@@ -1,7 +1,7 @@
 package develop.basicSpring.member
 
+import develop.basicSpring.AppConfig
 import develop.basicSpring.member.model.Member
-import develop.basicSpring.member.serviceImpl.MemberServiceImpl
 import org.assertj.core.api.Assertions
 
 import org.junit.jupiter.api.Test
@@ -11,7 +11,8 @@ import org.junit.jupiter.api.Test
  */
 class MemberServiceTest {
 
-    private val memberServiceImpl = MemberServiceImpl()
+    private val appConfig = AppConfig()
+    private val memberServiceImpl = appConfig.memberService()
 
     @Test
     fun join() {
