@@ -1,10 +1,7 @@
-package develop.basicSpring.order
+package develop.basicSpring
 
-import develop.basicSpring.AppConfig
 import develop.basicSpring.member.Grade
 import develop.basicSpring.member.model.Member
-import develop.basicSpring.member.serviceImpl.MemberServiceImpl
-import develop.basicSpring.order.serviceImpl.OrderServiceImpl
 
 /**
  * @author Rasung Ki
@@ -20,7 +17,7 @@ fun main() {
     val order = orderService.createOrder(
         memberId = "1",
         itemName = "itemA",
-        itemPrice = 10000,
+        itemPrice = 20000,
     )
 
     println("order = $order")

@@ -2,6 +2,7 @@ package develop.basicSpring
 
 import develop.basicSpring.discount.DiscountPolicy
 import develop.basicSpring.discount.FixDiscountPolicy
+import develop.basicSpring.discount.RateDiscountPolicy
 import develop.basicSpring.member.repository.MemberRepository
 import develop.basicSpring.member.repositoryImpl.MemberRepositoryImpl
 import develop.basicSpring.member.service.MemberService
@@ -27,7 +28,8 @@ class AppConfig {
     }
 
     private fun discountPolicy(): DiscountPolicy {
-        return FixDiscountPolicy()
+//        return RateDiscountPolicy()
+        return  FixDiscountPolicy()
     }
 
 }
