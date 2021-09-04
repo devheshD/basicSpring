@@ -7,5 +7,6 @@ class Test {
 
     fun test() {
         println("커밋1")
+        print("커밋 2")
     }
 }
