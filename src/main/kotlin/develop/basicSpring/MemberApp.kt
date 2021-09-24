@@ -2,15 +2,18 @@ package develop.basicSpring
 
 import develop.basicSpring.member.Grade
 import develop.basicSpring.member.model.Member
-import develop.basicSpring.member.serviceImpl.MemberServiceImpl
+import develop.basicSpring.member.service.MemberService
+import org.springframework.context.ApplicationContext
+import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 /**
  * @author Rasung Ki
  */
 fun main() {
+    val applicationContext: ApplicationContext = AnnotationConfigApplicationContext(AppConfig::class.java)
+    val service = applicationContext.getBean("memberService", MemberService::class.java)
+
     val member = Member("1", "memberA", Grade.VIP)
-    val appConfig = AppConfig()
-    val service = appConfig.memberService()
     service.join(member)
 
     val findMember = service.findMember("1")

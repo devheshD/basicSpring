@@ -9,25 +9,32 @@ import develop.basicSpring.member.service.MemberService
 import develop.basicSpring.member.serviceImpl.MemberServiceImpl
 import develop.basicSpring.order.service.OrderService
 import develop.basicSpring.order.serviceImpl.OrderServiceImpl
+import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.Configuration
 
 /**
  * @author Rasung Ki
  */
+@Configuration
 class AppConfig {
 
+    @Bean
     fun memberService(): MemberService {
         return MemberServiceImpl(memberRepository())
     }
 
-    private fun memberRepository(): MemberRepository {
+    @Bean
+    fun memberRepository(): MemberRepository {
         return MemberRepositoryImpl()
     }
 
+    @Bean
     fun orderService(): OrderService {
         return OrderServiceImpl(memberRepository(), discountPolicy())
     }
 
-    private fun discountPolicy(): DiscountPolicy {
+    @Bean
+    fun discountPolicy(): DiscountPolicy {
 //        return RateDiscountPolicy()
         return  FixDiscountPolicy()
     }
