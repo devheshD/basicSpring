@@ -58,3 +58,62 @@ ApplicationContext applicationContext = new AnnotationConfigApplicationContext(A
 
 **ApplicationContext이 제공하는 부가기능**
 ![img_4.png](img_4.png)
+
+# 싱글턴 패턴
+**클래스의 인스턴스가 딱 1개만 생성되는 것을 보장하는 디자인 패턴**
+
+기존에 만들었던 AppConfig는 요청을 할 때마다 객체를 새로 생성한다.
+즉, 고객 트랙픽이 초당 100이 나온다면 초당 100개 객체가 생성되고 소멸된다. -> 메모리 낭비 심함
+그렇기 때문에 해당 객체가 딱 1개만 생성되고, 공유하도록 설계한다. -> 싱글턴 패턴
+
+- 싱글턴 패턴의 문제점?
+    - 싱글턴 패턴을 구현하는 코드 자체가 많이 들어간다. 예) SingletonService
+    - 의존관계상 클라이언트가 구체 클래스에 의존한다. -> DIP 위반
+    - 클라이언트가 구체 클래스에 의존해서 OCP를 위반할 가능성이 높다.
+    - private 생성자로 자식 클래스를 만들기 어렵다.
+    - 결론적으로 유연성이 떨어진다.
+
+### 싱글턴 컨테이너
+스프링 컨테이너는 싱글턴 패턴의 문제점을 해결하면서 객체 인스턴스를 싱글턴으로 관리한다.
+- 싱글턴 패턴을 적용하지 않아도 객체 인스턴스를 싱글턴으로 관리
+- 스프링 컨테이너는 싱글턴 컨테이너 역할을 한다. 이렇게 싱글턴 객체를 관리하는 기능을 **싱글턴 레지스트리**라고 한다.
+
+### 싱글턴 방식의 문제점
+- 여러 클라이언트가 하나의 같은 객체 인스턴스를 공유하기 때문에 싱글톤 객체는 상태를 Stateful(유지)하게 설계하면 안된다.
+- **Stateless(무상태)** 로 설계해야 한다.
+    - 특정 클라이언트에 의존적인 필드가 있으면 안된다.
+    - 가급적 읽기만 가능해야 한다.
+    - 특정 클라이언트가 값을 변경할 수 있는 필드가 있으면 안된다.
+    - 필드 대신에 자바에서 공유되지 않는 지역변수, 파라미터, ThreadLocal 등을 사용해야 한다.
+- StatefulServiceTest 참고
+
+### @Configuration 과 싱글턴
+``` kotlin
+    @Test
+    fun configurationDeep() {
+        val ac = AnnotationConfigApplicationContext(AppConfig::class.java)
+        val bean = ac.getBean(AppConfig::class.java)
+
+        log.info("bean = ${bean.javaClass}")
+    }
+```
+- AnnotationConfigApplicationContext에 파라미터로 넘긴 값은 스프링 빈으로 등록된다. 그렇기 때문에 AppConfig도 스프링 빈이 된다.
+- 순수한 클래스라면 `class hello.core.AppConfig`로 로그가 찍혀야 하지만 `class develop.basicSpring.AppConfig$$EnhancerBySpringCGLIB$$fee5a529` 이렇게 클래스 정보가 출력이 된다.
+  
+- 이것은 내가 만든 클래스가 아닌 스프링이 CGLIB라는 바이트코드 조작 라이브러리를 사용해 AppConfig 클래스를 상속받은 임의의 다른 클래스를 만들고, 그 다른 클래스를 스프링 빈으로 등록한 것이다.
+
+**AppConfig@CGLIB 예상 코드**
+```kotlin
+@Bean
+fun memberRepository() {
+    if (memberRepository가 이미 스프링 컨테이너에 등록되어 있다면?) {
+        return 스프링 컨테이너에서 찾아서 반환
+    } else {
+        기존 로직을 호출해서 memberRepository를 생성하고 스프링 컨테이너에 등록
+        return 반환        
+    }
+}
+```
+- @Bean이 붙은 메서드 마다 이미 스프링 빈이 존재하면 존재하는 빈을 반환하고, 스프링 빈이 없으면 생성해서 스프링 빈으로 등록하고 반환하는 코드가 동적으로 만들어다.
+
+- 스프링 설정정보는 항상 **@Configuration** 을 사용하자

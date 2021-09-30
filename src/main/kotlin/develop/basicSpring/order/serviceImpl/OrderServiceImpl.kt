@@ -19,4 +19,7 @@ class OrderServiceImpl(
 
         return Order(memberId, itemName, itemPrice, discountPrice)
     }
+
+    // 테스트 용도
+    fun getMemberRepository() = memberRepository
 }
