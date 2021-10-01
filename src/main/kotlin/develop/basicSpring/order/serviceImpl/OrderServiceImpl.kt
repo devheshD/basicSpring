@@ -4,11 +4,14 @@ import develop.basicSpring.discount.DiscountPolicy
 import develop.basicSpring.member.repository.MemberRepository
 import develop.basicSpring.order.model.Order
 import develop.basicSpring.order.service.OrderService
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.stereotype.Component
 
 /**
  * @author Rasung Ki
  */
-class OrderServiceImpl(
+@Component
+class OrderServiceImpl @Autowired constructor(
     private val memberRepository: MemberRepository,
     private val discountPolicy: DiscountPolicy,
 ) : OrderService {

@@ -2,10 +2,12 @@ package develop.basicSpring.discount
 
 import develop.basicSpring.member.Grade
 import develop.basicSpring.member.model.Member
+import org.springframework.stereotype.Component
 
 /**
  * @author Rasung Ki
  */
+@Component
 class RateDiscountPolicy: DiscountPolicy {
     private val discountPercent = 10;
 

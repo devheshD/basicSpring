@@ -2,10 +2,12 @@ package develop.basicSpring.member.repositoryImpl
 
 import develop.basicSpring.member.model.Member
 import develop.basicSpring.member.repository.MemberRepository
+import org.springframework.stereotype.Component
 
 /**
  * @author Rasung Ki
  */
+@Component
 class MemberRepositoryImpl : MemberRepository {
 
     override fun save(member: Member) {

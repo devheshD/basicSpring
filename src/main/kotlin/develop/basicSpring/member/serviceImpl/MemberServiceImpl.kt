@@ -2,13 +2,15 @@ package develop.basicSpring.member.serviceImpl
 
 import develop.basicSpring.member.model.Member
 import develop.basicSpring.member.repository.MemberRepository
-import develop.basicSpring.member.repositoryImpl.MemberRepositoryImpl
 import develop.basicSpring.member.service.MemberService
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.stereotype.Component
 
 /**
  * @author Rasung Ki
  */
-class MemberServiceImpl(
+@Component
+class MemberServiceImpl @Autowired constructor(
     private val memberRepository: MemberRepository
 ) : MemberService {
 
