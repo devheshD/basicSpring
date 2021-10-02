@@ -102,7 +102,7 @@ ApplicationContext applicationContext = new AnnotationConfigApplicationContext(A
   
 - 이것은 내가 만든 클래스가 아닌 스프링이 CGLIB라는 바이트코드 조작 라이브러리를 사용해 AppConfig 클래스를 상속받은 임의의 다른 클래스를 만들고, 그 다른 클래스를 스프링 빈으로 등록한 것이다.
 
-**AppConfig@CGLIB 예상 코드**
+### AppConfig@CGLIB 예상 코드
 ```kotlin
 @Bean
 fun memberRepository() {
@@ -121,6 +121,36 @@ fun memberRepository() {
 # 컴포넌트 스캔
 스프링 설정 정보(AppConfig)가 없어도 자동으로 스프링 빈을 등록하는 컴포넌트 스캔 기능을 제공
 
-**@ComponentScan**
+### @ComponentScan
 - @Component 어노테이션이 붙은 클래스를 스캔해서 스프링 빈으로 등록한다.
 - 스프링 빈의 기본 이름은 클래스명을 사용하되 맨 앞글자만 소문자를 사용한다.
+
+### @Component
+- 개발자가 직접 작성한 Class를 Bean으로 등록하기 위한 어노테이션
+- @Bean 어노테이션은 개발자가 컨트롤이 불가능한 외부 라이브러리들을 Bean으로 등록하고 싶을때 사용
+
+### 탐색 위치와 기본 스캔 대상 
+- 모든 자바 클래스를 다 컴포넌트 스캔하면 시간이 오래 걸리기 때문에 필요한 위치부터 탐색하도록 시작
+```kotlin
+@ComponentScan(
+  basePackages = ["develop.basicSpring.member"]
+)
+```
+- basePackages : 탐색할 패키지의 시작 위치를 지정한다. 만약 지정하지 않을 경우 **@ComponentScan**이 붙은 설정 정보 클래스의 패키지가 시작 위치가 된다.
+
+### 컴포넌트 스캔 기본 대상
+- @Component : 컴포넌트 스캔에서 사용
+- @Controller : 스프링 MVC 컨트롤러에서 사용 
+- @Service : 스프링 비즈니스 로직에서 사용
+- @Repository : 스프링 데이터 접근 계층에서 사용
+- @Configuration : 스프링 설정 정보에서 사용
+
+### 컴포넌트 필터
+```kotlin
+@ComponentScan(
+    includeFilters = [ComponentScan.Filter(type = FilterType.ANNOTATION, classes = arrayOf(MyIncludeComponent::class))],
+    excludeFilters = [ComponentScan.Filter(type = FilterType.ANNOTATION, classes = arrayOf(MyExcludeComponent::class))]
+)
+```
+- **includeFilters**에 MyIncludeComponent 어노테이션을 추가해서 BeanA가 스프링 빈에 등록
+- **excludeFilters**에 MyExcludeComponent 어노테이션을 추가해서 BeanB는 스프링 빈에 등록되지 않는다.
