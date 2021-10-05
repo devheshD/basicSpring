@@ -40,11 +40,11 @@ ApplicationContext applicationContext = new AnnotationConfigApplicationContext(A
 ```
 - ApplicationContext를 스프링 컨테이너라 한다.
 - new AnnotationConfigApplicationContext(Appconfig.class) 를 통해 구성 정보를 지정 (Appconfig.class가 구성 정보)
-![img.png](img.png)
-![img_2.png](img_2.png)
+![img.png](src/img/img.png)
+![img_2.png](src/img/img_2.png)
 
 # BeanFactory와 ApplicationContext
-![img_3.png](img_3.png)
+![img_3.png](src/img/img_3.png)
 
 **BeanFactory**
 - 스프링 컨테이너의 최상위 인터페이스
@@ -57,7 +57,7 @@ ApplicationContext applicationContext = new AnnotationConfigApplicationContext(A
 - 애플리케이션을 개발할 때는 빈은 관리하고 조회하는 기능은 물론이고, 수 많은 부가기능이 필요하다.
 
 **ApplicationContext이 제공하는 부가기능**
-![img_4.png](img_4.png)
+![img_4.png](src/img/img_4.png)
 
 # 싱글턴 패턴
 **클래스의 인스턴스가 딱 1개만 생성되는 것을 보장하는 디자인 패턴**
