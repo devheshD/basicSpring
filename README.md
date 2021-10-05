@@ -154,3 +154,13 @@ fun memberRepository() {
 ```
 - **includeFilters**에 MyIncludeComponent 어노테이션을 추가해서 BeanA가 스프링 빈에 등록
 - **excludeFilters**에 MyExcludeComponent 어노테이션을 추가해서 BeanB는 스프링 빈에 등록되지 않는다.
+
+# 의존관계 주입 방법
+1. 생성자 주입
+- 생성자를 통해서 의존관계를 주입받는 방법
+- **불변**, **필수** 의존관계에 사용
+- **생성자가 딱 1개만 있으면 @Autowired를 생략해도 자동 주입 가능**
+
+2. Setter 주입
+- setter라 불리는 필드의 값을 변경하는 수정자 메서드를 통해서 의존관계를 주입
+- **선택**, **변경** 가능성이 있는 의존관계에 사용
