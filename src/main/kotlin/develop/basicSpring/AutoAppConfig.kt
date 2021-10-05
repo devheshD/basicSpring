@@ -10,7 +10,7 @@ import org.springframework.context.annotation.FilterType
  */
 @Configuration
 @ComponentScan(
-    basePackages = ["develop.basicSpring.member"],
+    basePackages = ["develop.basicSpring"],
     excludeFilters = [Filter(type = FilterType.ANNOTATION, classes = arrayOf(Configuration::class))]
 )
 class AutoAppConfig {
