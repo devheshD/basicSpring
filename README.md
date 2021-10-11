@@ -103,7 +103,7 @@ ApplicationContext applicationContext = new AnnotationConfigApplicationContext(A
 - 이것은 내가 만든 클래스가 아닌 스프링이 CGLIB라는 바이트코드 조작 라이브러리를 사용해 AppConfig 클래스를 상속받은 임의의 다른 클래스를 만들고, 그 다른 클래스를 스프링 빈으로 등록한 것이다.
 
 ### AppConfig@CGLIB 예상 코드
-```kotlin
+``` kotlin
 @Bean
 fun memberRepository() {
     if (memberRepository가 이미 스프링 컨테이너에 등록되어 있다면?) {
@@ -135,7 +135,7 @@ fun memberRepository() {
 
 ### 탐색 위치와 기본 스캔 대상 
 - 모든 자바 클래스를 다 컴포넌트 스캔하면 시간이 오래 걸리기 때문에 필요한 위치부터 탐색하도록 시작
-```kotlin
+``` kotlin
 @ComponentScan(
   basePackages = ["develop.basicSpring.member"]
 )
@@ -150,7 +150,7 @@ fun memberRepository() {
 - @Configuration : 스프링 설정 정보에서 사용
 
 ### 컴포넌트 필터
-```kotlin
+``` kotlin
 @ComponentScan(
     includeFilters = [ComponentScan.Filter(type = FilterType.ANNOTATION, classes = arrayOf(MyIncludeComponent::class))],
     excludeFilters = [ComponentScan.Filter(type = FilterType.ANNOTATION, classes = arrayOf(MyExcludeComponent::class))]
